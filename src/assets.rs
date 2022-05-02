@@ -14,6 +14,15 @@ pub struct SpriteSheet(pub Handle<TextureAtlas>);
 
 pub struct SpriteIndices(pub HashMap<String, usize>);
 
+impl SpriteIndices {
+    pub fn get_texture_sprite_image(&self, name: &str) -> TextureAtlasSprite {
+        match self.0.get(name) {
+            Some(index) => TextureAtlasSprite::new(*index),
+            None => panic!("Could not find sprite with given name or index"),
+        }
+    }
+}
+
 #[derive(Debug)]
 pub struct Coordinates {
     x: f32,

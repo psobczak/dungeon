@@ -12,11 +12,11 @@ pub struct WindowSize {
 }
 
 impl WindowSize {
-    fn half_width(&self) -> f32 {
+    pub fn half_width(&self) -> f32 {
         self.width / 2.0
     }
 
-    fn half_height(&self) -> f32 {
+    pub fn half_height(&self) -> f32 {
         self.height / 2.0
     }
 }

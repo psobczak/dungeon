@@ -20,7 +20,7 @@ impl Plugin for PlayerPlugin {
 }
 
 fn spawn_player(mut commands: Commands, sprites: Res<SpriteSheet>, indices: Res<SpriteIndices>) {
-    let sprite = get_texture_sprite_image("weapon_bow", indices);
+    let sprite = indices.get_texture_sprite_image("floor_spikes_anim");
     commands.spawn_bundle(SpriteSheetBundle {
         sprite,
         texture_atlas: sprites.0.clone(),
@@ -37,12 +37,7 @@ fn spawn_player(mut commands: Commands, sprites: Res<SpriteSheet>, indices: Res<
     .insert(Name::new("Player"));
 }
 
-fn get_texture_sprite_image(name: &str, indices: Res<SpriteIndices>) -> TextureAtlasSprite {
-    match indices.0.get(name) {
-        Some(index) => TextureAtlasSprite::new(*index),
-        None => panic!("Could not find sprite with given name or index"),
-    }
-}
+
 
 fn player_movement(mut player_query: Query<(&Player, &mut Transform)>, keyboard: Res<Input<KeyCode>>, time: Res<Time>) {
     let (player, mut transform) = player_query.single_mut();
